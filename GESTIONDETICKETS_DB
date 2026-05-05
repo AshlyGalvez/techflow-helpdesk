@@ -1,0 +1,373 @@
+CREATE DATABASE  IF NOT EXISTS `bd_gestiontickets` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `bd_gestiontickets`;
+-- MySQL dump 10.13  Distrib 8.0.45, for Win64 (x86_64)
+--
+-- Host: localhost    Database: bd_gestiontickets
+-- ------------------------------------------------------
+-- Server version	8.0.45
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `tb_comentario`
+--
+
+DROP TABLE IF EXISTS `tb_comentario`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tb_comentario` (
+  `id_comentario` int NOT NULL AUTO_INCREMENT,
+  `id_ticket` int NOT NULL,
+  `id_usuario` int NOT NULL,
+  `texto_comentario` text NOT NULL,
+  `fecha_reg` datetime DEFAULT CURRENT_TIMESTAMP,
+  `es_solucion` tinyint DEFAULT '0',
+  PRIMARY KEY (`id_comentario`),
+  KEY `fk_comentario_ticket` (`id_ticket`),
+  KEY `fk_comentario_usuario` (`id_usuario`),
+  CONSTRAINT `fk_comentario_ticket` FOREIGN KEY (`id_ticket`) REFERENCES `tb_ticket` (`id_ticket`),
+  CONSTRAINT `fk_comentario_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `tb_usuario` (`id_usuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tb_comentario`
+--
+
+LOCK TABLES `tb_comentario` WRITE;
+/*!40000 ALTER TABLE `tb_comentario` DISABLE KEYS */;
+INSERT INTO `tb_comentario` VALUES (1,1,3,'hjhhj','2026-04-24 08:14:28',0),(2,1,2,'scksdjlfdjsflj','2026-04-25 15:35:44',1),(3,3,2,'aaaaaaaaaaaaaaaaaaaa','2026-04-25 15:54:12',1),(4,1,3,'CASO REABIERTO: El usuario no está conforme con la solución.','2026-04-25 16:14:24',0),(5,1,2,'kjgkgkgkgkkg','2026-04-25 16:33:25',1),(6,1,3,'CASO REABIERTO: El usuario no está conforme con la solución.','2026-04-25 16:33:48',0),(7,1,2,'ohikhnkhnkhnk','2026-04-25 16:34:19',1),(8,1,3,'CASO REABIERTO: El usuario no está conforme con la solución.','2026-04-25 17:15:28',0),(9,1,2,'dgfh','2026-04-25 18:18:08',1),(10,2,2,'dgfthg','2026-04-25 18:36:46',1),(11,4,2,'asxsa','2026-04-25 19:37:37',1),(12,5,2,'lkihnlnj','2026-04-25 19:47:23',1),(13,6,2,'kjkbkbki','2026-04-25 22:31:37',1);
+/*!40000 ALTER TABLE `tb_comentario` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tb_detalle_tecnico`
+--
+
+DROP TABLE IF EXISTS `tb_detalle_tecnico`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tb_detalle_tecnico` (
+  `id_tecnico` int NOT NULL,
+  `especialidad` varchar(100) DEFAULT NULL,
+  `disponibilidad` int DEFAULT '1',
+  `tickets_resueltos` int DEFAULT '0',
+  PRIMARY KEY (`id_tecnico`),
+  CONSTRAINT `fk_usuario_tecnico` FOREIGN KEY (`id_tecnico`) REFERENCES `tb_usuario` (`id_usuario`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tb_detalle_tecnico`
+--
+
+LOCK TABLES `tb_detalle_tecnico` WRITE;
+/*!40000 ALTER TABLE `tb_detalle_tecnico` DISABLE KEYS */;
+INSERT INTO `tb_detalle_tecnico` VALUES (2,'Especialista en Redes',1,0),(39,'Software',1,0);
+/*!40000 ALTER TABLE `tb_detalle_tecnico` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tb_estado`
+--
+
+DROP TABLE IF EXISTS `tb_estado`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tb_estado` (
+  `id_estado` int NOT NULL AUTO_INCREMENT,
+  `nom_estado` varchar(50) NOT NULL,
+  PRIMARY KEY (`id_estado`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tb_estado`
+--
+
+LOCK TABLES `tb_estado` WRITE;
+/*!40000 ALTER TABLE `tb_estado` DISABLE KEYS */;
+INSERT INTO `tb_estado` VALUES (1,'Abierto'),(2,'En Proceso'),(3,'Resuelto'),(4,'Cerrado'),(5,'Cerrado por Inactividad');
+/*!40000 ALTER TABLE `tb_estado` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tb_prioridad`
+--
+
+DROP TABLE IF EXISTS `tb_prioridad`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tb_prioridad` (
+  `id_prioridad` int NOT NULL AUTO_INCREMENT,
+  `nom_prioridad` varchar(50) NOT NULL,
+  `tiempo_horas` int NOT NULL,
+  PRIMARY KEY (`id_prioridad`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tb_prioridad`
+--
+
+LOCK TABLES `tb_prioridad` WRITE;
+/*!40000 ALTER TABLE `tb_prioridad` DISABLE KEYS */;
+INSERT INTO `tb_prioridad` VALUES (1,'Baja',72),(2,'Media',48),(3,'Alta',24),(4,'Crítica',4);
+/*!40000 ALTER TABLE `tb_prioridad` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tb_rol`
+--
+
+DROP TABLE IF EXISTS `tb_rol`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tb_rol` (
+  `id_rol` int NOT NULL AUTO_INCREMENT,
+  `nom_rol` varchar(50) NOT NULL,
+  PRIMARY KEY (`id_rol`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tb_rol`
+--
+
+LOCK TABLES `tb_rol` WRITE;
+/*!40000 ALTER TABLE `tb_rol` DISABLE KEYS */;
+INSERT INTO `tb_rol` VALUES (1,'Administrador'),(2,'Técnico'),(3,'Usuario');
+/*!40000 ALTER TABLE `tb_rol` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tb_ticket`
+--
+
+DROP TABLE IF EXISTS `tb_ticket`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tb_ticket` (
+  `id_ticket` int NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(150) NOT NULL,
+  `descripcion` text NOT NULL,
+  `fecha_reg` datetime DEFAULT CURRENT_TIMESTAMP,
+  `fecha_cierre` datetime DEFAULT NULL,
+  `id_usuario_reporta` int NOT NULL,
+  `id_tecnico_asignado` int DEFAULT NULL,
+  `id_tipo` int NOT NULL,
+  `id_estado` int NOT NULL DEFAULT '1',
+  `id_prioridad` int NOT NULL,
+  PRIMARY KEY (`id_ticket`),
+  KEY `fk_ticket_usuario_reporta` (`id_usuario_reporta`),
+  KEY `fk_ticket_tecnico_asignado` (`id_tecnico_asignado`),
+  KEY `fk_ticket_tipo` (`id_tipo`),
+  KEY `fk_ticket_estado` (`id_estado`),
+  KEY `fk_ticket_prioridad` (`id_prioridad`),
+  CONSTRAINT `fk_ticket_estado` FOREIGN KEY (`id_estado`) REFERENCES `tb_estado` (`id_estado`),
+  CONSTRAINT `fk_ticket_prioridad` FOREIGN KEY (`id_prioridad`) REFERENCES `tb_prioridad` (`id_prioridad`),
+  CONSTRAINT `fk_ticket_tecnico_asignado` FOREIGN KEY (`id_tecnico_asignado`) REFERENCES `tb_usuario` (`id_usuario`),
+  CONSTRAINT `fk_ticket_tipo` FOREIGN KEY (`id_tipo`) REFERENCES `tb_tipo_problema` (`id_tipo`),
+  CONSTRAINT `fk_ticket_usuario_reporta` FOREIGN KEY (`id_usuario_reporta`) REFERENCES `tb_usuario` (`id_usuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tb_ticket`
+--
+
+LOCK TABLES `tb_ticket` WRITE;
+/*!40000 ALTER TABLE `tb_ticket` DISABLE KEYS */;
+INSERT INTO `tb_ticket` VALUES (1,'Error al ingresar a la plataforma Socrates ','Intento ingresar a la plataforma y no me deja ','2026-04-22 14:47:33','2026-04-25 18:18:08',3,2,4,2,3),(2,'Fallo de mouse','hklhklh','2026-04-24 19:56:40','2026-04-25 18:36:46',3,NULL,1,4,1),(3,'Fallo de mouse','hjkhjg','2026-04-24 19:59:06','2026-04-25 15:54:12',3,NULL,1,3,1),(4,'Fallo','fcfddf','2026-04-24 20:28:49','2026-04-25 19:37:37',3,NULL,2,3,1),(5,'Fallo 2','ikgjgjug','2026-04-25 15:29:18','2026-04-25 19:47:23',3,NULL,3,3,3),(6,'Fallo 2','kujgkghk','2026-04-25 16:37:35','2026-04-25 22:31:37',2,2,3,3,3),(7,'Prueba','pruebaaaaaa','2026-04-25 22:29:51',NULL,3,2,3,2,4),(8,'Pruebaa 3 ','ihlokholkhok','2026-04-26 00:53:52',NULL,3,2,2,2,3);
+/*!40000 ALTER TABLE `tb_ticket` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tb_tipo_problema`
+--
+
+DROP TABLE IF EXISTS `tb_tipo_problema`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tb_tipo_problema` (
+  `id_tipo` int NOT NULL AUTO_INCREMENT,
+  `nom_tipo` varchar(100) NOT NULL,
+  PRIMARY KEY (`id_tipo`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tb_tipo_problema`
+--
+
+LOCK TABLES `tb_tipo_problema` WRITE;
+/*!40000 ALTER TABLE `tb_tipo_problema` DISABLE KEYS */;
+INSERT INTO `tb_tipo_problema` VALUES (1,'Hardware'),(2,'Software'),(3,'Redes'),(4,'Accesos');
+/*!40000 ALTER TABLE `tb_tipo_problema` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tb_usuario`
+--
+
+DROP TABLE IF EXISTS `tb_usuario`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tb_usuario` (
+  `id_usuario` int NOT NULL AUTO_INCREMENT,
+  `dni` varchar(8) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `apellido` varchar(100) NOT NULL,
+  `correo` varchar(100) NOT NULL,
+  `login` varchar(50) NOT NULL,
+  `contrasena` varchar(50) NOT NULL,
+  `id_rol` int DEFAULT NULL,
+  `estado_logico` int DEFAULT '1',
+  PRIMARY KEY (`id_usuario`),
+  UNIQUE KEY `dni` (`dni`),
+  UNIQUE KEY `correo` (`correo`),
+  UNIQUE KEY `login` (`login`),
+  KEY `fk_rol_usuario` (`id_rol`),
+  CONSTRAINT `fk_rol_usuario` FOREIGN KEY (`id_rol`) REFERENCES `tb_rol` (`id_rol`)
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tb_usuario`
+--
+
+LOCK TABLES `tb_usuario` WRITE;
+/*!40000 ALTER TABLE `tb_usuario` DISABLE KEYS */;
+INSERT INTO `tb_usuario` VALUES (1,'11111111','Admin','Sistema','admin@clinica.com','admin','admin123',1,1),(2,'22222225','Ricardo','Mendoza','rmendozzzza@clinica.com','tecnico1','123',2,1),(3,'33333333','Sonia','Enfermera','senfermera@clinica.com','user1','123',3,1),(4,'74930140','Ashly','Galvez Cruz','ashly.galvez31@gmail.com','katy','123454',1,0),(33,'99999999','Prueba','Test','test@mail.com','usertest','123',1,1),(37,'87654555','Algoritmos','Galvez zapata','katy1256@gmail.com','katy2024','9977697',3,1),(38,'87654523','Algoritmos','Galvez Espinoza','katy12567@gmail.com','katy2026','987907',3,1),(39,'12345678','Piero','Perez','p@gmail.com','piero','123',2,1),(40,'98765678','Prueba','Final','pruebaf@gmail.com','p123','123',3,1);
+/*!40000 ALTER TABLE `tb_usuario` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping routines for database 'bd_gestiontickets'
+--
+/*!50003 DROP PROCEDURE IF EXISTS `usp_asignarTecnico` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_asignarTecnico`(id_tkt INT, id_tec INT)
+BEGIN
+    UPDATE tb_ticket 
+    SET id_tecnico_asignado = id_tec, id_estado = 2 
+    WHERE id_ticket = id_tkt;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `usp_cerrarTicketsInactivos` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_cerrarTicketsInactivos`()
+BEGIN
+    UPDATE tb_ticket 
+    SET id_estado = 5 -- 5 = Cerrado por inactividad según tu tabla tb_estado
+    WHERE id_estado = 3 -- Solo los que están en 'Resuelto'
+    AND DATEDIFF(NOW(), fecha_cierre) >= 2; -- Más de 48 horas (2 días)
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `usp_registrarTicket` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_registrarTicket`(tit VARCHAR(150), des TEXT, id_u INT, id_t INT, id_p INT)
+BEGIN
+    INSERT INTO tb_ticket (titulo, descripcion, id_usuario_reporta, id_tipo, id_prioridad, id_estado, fecha_reg)
+    VALUES (tit, des, id_u, id_t, id_p, 1, NOW());
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `usp_resolverTicket` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_resolverTicket`(id_tkt INT, com TEXT)
+BEGIN
+    -- Actualizamos el estado del ticket
+    UPDATE tb_ticket SET id_estado = 3, fecha_cierre = NOW() WHERE id_ticket = id_tkt;
+    -- Insertamos el comentario de solución
+    INSERT INTO tb_comentario (id_ticket, id_usuario, texto_comentario, es_solucion)
+    SELECT id_tkt, id_tecnico_asignado, com, 1 FROM tb_ticket WHERE id_ticket = id_tkt;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `usp_validarLogin` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_validarLogin`(usr VARCHAR(50), psw VARCHAR(50))
+BEGIN
+    SELECT * FROM tb_usuario 
+    WHERE login = usr AND contrasena = psw AND estado_logico = 1;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2026-04-26  7:06:51
