@@ -1,0 +1,12 @@
+bin/
+target/
+build/
+.settings/
+.classpath
+.project
+*.war
+*.class
+*.jar
+Thumbs.db
+.DS_Store
+Servers/
