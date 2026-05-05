@@ -1,0 +1,564 @@
+
+body {
+    background-color: #0f1117 !important;
+    color: #e8eaf0 !important;
+    font-family: 'Segoe UI', system-ui, sans-serif !important;
+}
+
+.main-content {
+    margin-left: 260px !important;
+    width: calc(100% - 260px) !important;
+    min-height: 100vh !important;
+    padding: 36px 40px !important;
+    box-sizing: border-box !important;
+    background-color: #0f1117 !important;
+    display: block !important;
+}
+
+/* ── Page Header ── */
+.mant-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.mant-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #e8eaf0;
+    margin: 0 0 4px;
+    letter-spacing: -0.02em;
+}
+
+.mant-subtitle {
+    font-size: 0.82rem;
+    color: #555a6e;
+    margin: 0;
+}
+
+/* ── Layout grid: form izq + tabla der ── */
+.mant-grid {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 24px;
+    align-items: start;
+}
+
+/* ── Tarjeta base ── */
+.mant-card {
+    background: #16181f;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 14px;
+    padding: 28px;
+}
+
+.mant-card-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #e8eaf0;
+    margin: 0 0 22px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.mant-card-title .card-icon {
+    width: 30px; height: 30px;
+    background: rgba(77,142,240,0.15);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+}
+
+/* ── Formulario ── */
+.mant-form .field-group {
+    margin-bottom: 18px;
+}
+
+.mant-form .field-label {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #8b90a0;
+    margin-bottom: 7px;
+}
+
+.mant-form .field-input,
+.mant-form .field-select {
+    width: 100%;
+    padding: 10px 14px;
+    background: #1c1f29 !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+    border-radius: 9px;
+    color: #e8eaf0 !important;
+    font-size: 0.86rem;
+    font-family: inherit;
+    transition: border-color 0.18s, box-shadow 0.18s;
+    box-sizing: border-box;
+}
+
+.mant-form .field-input::placeholder { color: #555a6e; }
+
+.mant-form .field-input:focus,
+.mant-form .field-select:focus {
+    outline: none;
+    border-color: rgba(77,142,240,0.6) !important;
+    box-shadow: 0 0 0 3px rgba(77,142,240,0.12);
+    background: #1e2235 !important;
+}
+
+.mant-form .field-select option {
+    background: #1c1f29;
+    color: #e8eaf0;
+}
+
+/* Row de dos columnas dentro del form */
+.field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+/* Botones del formulario */
+.mant-btn-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 24px;
+}
+
+.btn-mant-save {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 11px 18px;
+    background: #4d8ef0;
+    color: #fff !important;
+    border: none;
+    border-radius: 9px;
+    font-size: 0.86rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none !important;
+    transition: background 0.18s, transform 0.15s;
+    width: 100%;
+}
+.btn-mant-save:hover { background: #3a7de0; transform: translateY(-1px); }
+
+.btn-mant-cancel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 18px;
+    background: transparent;
+    color: #8b90a0 !important;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 9px;
+    font-size: 0.86rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none !important;
+    transition: all 0.15s;
+    width: 100%;
+}
+.btn-mant-cancel:hover {
+    border-color: rgba(255,255,255,0.2);
+    color: #e8eaf0 !important;
+}
+
+/* ── Alerta / mensaje ── */
+.mant-alert {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    background: rgba(77,142,240,0.1);
+    border: 1px solid rgba(77,142,240,0.25);
+    border-radius: 9px;
+    color: #4d8ef0;
+    font-size: 0.83rem;
+    margin-bottom: 20px;
+}
+
+/* ── Tabla ── */
+.mant-table-wrap {
+    overflow-x: auto;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.mant-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.84rem;
+}
+
+.mant-table thead tr {
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.mant-table th {
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: #555a6e;
+    white-space: nowrap;
+    background: rgba(255,255,255,0.02);
+}
+
+.mant-row {
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    transition: background 0.14s;
+    opacity: 0;
+    animation: rowIn 0.3s ease forwards;
+}
+.mant-row:last-child { border-bottom: none; }
+.mant-row:hover { background: #1a1d28; }
+
+@keyframes rowIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.mant-table td {
+    padding: 13px 16px;
+    vertical-align: middle;
+    color: #8b90a0;
+    border: none !important;
+    background: transparent !important;
+}
+
+.mant-table td.td-primary {
+    color: #e8eaf0;
+    font-weight: 500;
+}
+
+/* Avatar / nombre con inicial */
+.user-cell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-avatar {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: rgba(77,142,240,0.12);
+    color: #4d8ef0;
+    font-size: 0.75rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    text-transform: uppercase;
+    border: 1px solid rgba(77,142,240,0.2);
+}
+
+.user-name  { color: #e8eaf0; font-weight: 500; font-size: 0.85rem; line-height: 1.2; }
+.user-login { color: #555a6e; font-size: 0.75rem; font-family: 'Courier New', monospace; }
+
+/* Badges de rol */
+.rol-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-size: 0.73rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+.rol-admin   { color: #52c077; background: rgba(82,192,119,0.12); }
+.rol-tecnico { color: #4d8ef0; background: rgba(77,142,240,0.12); }
+.rol-usuario { color: #8b90a0; background: rgba(139,144,160,0.12); }
+
+/* Badge estado activo/inactivo */
+.estado-activo   { color: #52c077; background: rgba(82,192,119,0.12); border-radius: 6px; padding: 3px 10px; font-size: 0.73rem; font-weight: 600; }
+.estado-inactivo { color: #f06a4d; background: rgba(240,106,77,0.12); border-radius: 6px; padding: 3px 10px; font-size: 0.73rem; font-weight: 600; }
+
+/* Contraseña */
+.pass-cell {
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: #7b61ff;
+    letter-spacing: 0.03em;
+}
+
+/* ── Botones de acción en tabla ── */
+.action-group {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+}
+
+.btn-edit, .btn-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: transparent;
+    color: #8b90a0 !important;
+    text-decoration: none !important;
+    font-size: 0.82rem;
+    transition: all 0.15s;
+    cursor: pointer;
+}
+.btn-edit:hover {
+    background: rgba(77,142,240,0.12);
+    border-color: rgba(77,142,240,0.4);
+    color: #4d8ef0 !important;
+}
+.btn-toggle-off:hover {
+    background: rgba(240,106,77,0.12);
+    border-color: rgba(240,106,77,0.4);
+    color: #f06a4d !important;
+}
+.btn-toggle-on:hover {
+    background: rgba(82,192,119,0.12);
+    border-color: rgba(82,192,119,0.4);
+    color: #52c077 !important;
+}
+
+/* ── Empty state ── */
+.mant-empty {
+    text-align: center;
+    padding: 50px 20px;
+    color: #555a6e;
+}
+.mant-empty-icon { font-size: 2rem; margin-bottom: 10px; }
+.mant-empty p    { font-size: 0.85rem; margin: 0; }
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+    .mant-grid { grid-template-columns: 1fr; }
+    .main-content { padding: 20px 16px !important; }
+}
+
+        /* Tarjeta de técnico — estilos extra compatibles con mantenimientos.css */
+        .tec-card {
+            background: #1c1f29;
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 14px;
+            transition: background 0.15s, border-color 0.15s;
+        }
+        .tec-card:hover {
+            background: #1e2235;
+            border-color: rgba(77,142,240,0.25);
+        }
+        .tec-avatar {
+            width: 42px; height: 42px;
+            border-radius: 50%;
+            background: rgba(77,142,240,0.15);
+            color: #4d8ef0;
+            font-size: 1rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            border: 1px solid rgba(77,142,240,0.25);
+            text-transform: uppercase;
+        }
+        .tec-name  { color: #e8eaf0; font-weight: 600; font-size: 0.9rem; margin: 0; }
+        .tec-email { color: #555a6e; font-size: 0.75rem; margin: 2px 0 0; }
+        .tec-divider { border-color: rgba(255,255,255,0.06); margin: 14px 0; }
+        .tec-label { font-size: 0.67rem; text-transform: uppercase; letter-spacing: 0.07em; color: #555a6e; margin-bottom: 3px; }
+        .tec-value { font-size: 0.82rem; font-weight: 600; color: #e8eaf0; }
+        .pill-disp {
+            display: inline-block; padding: 3px 10px; border-radius: 20px;
+            font-size: 0.73rem; font-weight: 600;
+        }
+        .pill-ok  { color: #52c077; background: rgba(82,192,119,0.12); }
+        .pill-off { color: #f06a4d; background: rgba(240,106,77,0.12); }
+        .btn-tec-edit {
+            display: inline-flex; align-items: center; gap: 5px;
+            padding: 5px 12px; border-radius: 7px; font-size: 0.76rem; font-weight: 500;
+            background: transparent; border: 1px solid rgba(255,255,255,0.1);
+            color: #8b90a0 !important; text-decoration: none !important;
+            transition: all 0.15s;
+        }
+        .btn-tec-edit:hover {
+            background: rgba(77,142,240,0.12);
+            border-color: rgba(77,142,240,0.4);
+            color: #4d8ef0 !important;
+        }
+        .btn-tec-ver {
+            display: inline-flex; align-items: center; gap: 5px;
+            padding: 5px 12px; border-radius: 7px; font-size: 0.76rem; font-weight: 500;
+            background: transparent; border: 1px solid rgba(255,255,255,0.1);
+            color: #8b90a0 !important; text-decoration: none !important;
+            transition: all 0.15s;
+        }
+        .btn-tec-ver:hover {
+            background: rgba(82,192,119,0.1);
+            border-color: rgba(82,192,119,0.35);
+            color: #52c077 !important;
+        }
+        .tec-trophy { color: #f0a830; }
+        .empty-tec  { text-align: center; padding: 50px 20px; color: #555a6e; }
+        .empty-tec-icon { font-size: 2.2rem; margin-bottom: 10px; }
+
+        /* Badges de prioridad — extra sobre mantenimientos.css */
+        .prio-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 7px;
+            font-size: 0.78rem;
+            font-weight: 600;
+        }
+        .prio-baja    { color: #52c077; background: rgba(82,192,119,0.13); }
+        .prio-media   { color: #f0a830; background: rgba(240,168,48,0.13); }
+        .prio-alta    { color: #f06a4d; background: rgba(240,106,77,0.13); }
+        .prio-critica { color: #e03e3e; background: rgba(224,62,62,0.15); }
+        .prio-default { color: #8b90a0; background: rgba(139,144,160,0.13); }
+
+        .tiempo-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.78rem;
+            color: #8b90a0;
+        }
+        .tiempo-num {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #4d8ef0;
+        }
+
+
+        /* Badge de rol — consistente con listUsuarios */
+        .rol-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 5px 14px;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 600;
+        }
+        .rol-chip-1 { color: #52c077; background: rgba(82,192,119,0.12); }
+        .rol-chip-2 { color: #4d8ef0; background: rgba(77,142,240,0.12); }
+        .rol-chip-3 { color: #8b90a0; background: rgba(139,144,160,0.12); }
+        .rol-chip-x { color: #f0a830; background: rgba(240,168,48,0.12); }
+
+        .rol-icon {
+            width: 34px; height: 34px;
+            border-radius: 9px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+        .rol-icon-1 { background: rgba(82,192,119,0.12); }
+        .rol-icon-2 { background: rgba(77,142,240,0.12); }
+        .rol-icon-3 { background: rgba(139,144,160,0.12); }
+        .rol-icon-x { background: rgba(240,168,48,0.12); }
+
+        /* Pills de estado — mismos colores que detalle_ticket y listado */
+        .estado-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            border: 1px solid transparent;
+        }
+        .estado-pill::before {
+            content: '';
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            display: inline-block;
+            flex-shrink: 0;
+        }
+        .est-1 { color:#f0a830; background:rgba(240,168,48,0.13);  border-color:rgba(240,168,48,0.22); }
+        .est-1::before { background:#f0a830; }
+        .est-2 { color:#4d8ef0; background:rgba(77,142,240,0.13);  border-color:rgba(77,142,240,0.22); }
+        .est-2::before { background:#4d8ef0; }
+        .est-3 { color:#52c077; background:rgba(82,192,119,0.13);  border-color:rgba(82,192,119,0.22); }
+        .est-3::before { background:#52c077; }
+        .est-4 { color:#8b90a0; background:rgba(139,144,160,0.13); border-color:rgba(139,144,160,0.22); }
+        .est-4::before { background:#8b90a0; }
+        .est-5 { color:#7b61ff; background:rgba(123,97,255,0.13);  border-color:rgba(123,97,255,0.22); }
+        .est-5::before { background:#7b61ff; }
+        .est-x { color:#8b90a0; background:rgba(139,144,160,0.10); border-color:rgba(139,144,160,0.15); }
+        .est-x::before { background:#8b90a0; }
+
+        /* Chips de tipo — colores distintos por categoría */
+        .tipo-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 5px 14px;
+            border-radius: 8px;
+            font-size: 0.81rem;
+            font-weight: 600;
+        }
+        .tipo-hardware  { color: #f0a830; background: rgba(240,168,48,0.12);  }
+        .tipo-software  { color: #4d8ef0; background: rgba(77,142,240,0.12);  }
+        .tipo-redes     { color: #52c077; background: rgba(82,192,119,0.12);  }
+        .tipo-accesos   { color: #7b61ff; background: rgba(123,97,255,0.12);  }
+        .tipo-default   { color: #8b90a0; background: rgba(139,144,160,0.12); }
+
+        .tipo-icon {
+            width: 34px; height: 34px;
+            border-radius: 9px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+     
+/* =====================================================
+   AGREGAR AL FINAL DE mantenimientos.css
+   Estilos para el separador de secciones en
+   mantenimiento_tipos.jsp (tipos + subtipos)
+   ===================================================== */
+
+/* ── Separador de sección ── */
+.mant-section-divider {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 8px 0 24px;
+}
+
+.mant-section-divider::before,
+.mant-section-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255,255,255,0.07);
+}
+
+.mant-section-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #555a6e;
+    white-space: nowrap;
+    padding: 0 4px;
+}        
+        
+        
+        
+        
+     
