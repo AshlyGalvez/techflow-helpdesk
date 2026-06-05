@@ -38,4 +38,3 @@ Patrón MVC + DAO
 ## Desarrollado por
 
 **Ashly Galvez** — Computación e Informática, CIBERTEC  
-Curso: Lenguaje de Programación 1
