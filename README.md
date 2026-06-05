@@ -26,14 +26,29 @@ Patrón MVC + DAO
 ├── Entidades + DAOs → Modelo (acceso a datos)
 └── MySQL          → Base de datos relacional
 
-## Configuración para ejecutar
+## Arquitectura de Datos y Control (Enfoque en Seguridad)
+El sistema fue diseñado bajo estrictos lineamientos de integridad de datos y control operativo:
+- **Modelo Relacional Óptimo:** Implementación de claves foráneas y restricciones en MySQL para asegurar la consistencia de la información.
+- **Trazabilidad en Base de Datos:** Registro preciso de marcas de tiempo (`fecha_reg`, `fecha_cierre`) para auditorías de cumplimiento de niveles de servicio (SLA).
+- **Mecanismos de Control de Tiempo:** Diseño lógico para la automatización de reglas de negocio, incluyendo alertas de estancamiento y cierres automatizados por inactividad (48 horas).
+- **Estado Lógico:** Uso de banderas operativas para bajas de usuarios en lugar de eliminaciones físicas, preservando el historial de auditoría del sistema.
 
+
+## Configuración para ejecutar
 1. Clona el repositorio
 2. Importa en Eclipse como **Dynamic Web Project**
 3. Configura `MySQLConexion.java` con tus credenciales de MySQL
 4. Ejecuta el script `bd_gestiontickets.sql` en MySQL Workbench
 5. Despliega en **Apache Tomcat 9**
 6. Accede a `http://localhost:8080/gestion_ticket`
+
+## Diagramas de Diseño
+
+### Modelo Entidad-Relación (MySQL)
+<img width="1118" height="1070" alt="base de datos diagrama" src="https://github.com/user-attachments/assets/92a78de6-51df-4b73-954d-fc9a521acfb1" />
+
+### Modelado de Procesos de Negocio (BPMN 2.0)
+<img width="5452" height="2616" alt="GESTION DE TICKETS 1 2" src="https://github.com/user-attachments/assets/d85183be-991b-462d-b80d-f4a9db7bae0f" />
 
 ## Desarrollado por
 
